@@ -15,5 +15,5 @@ build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
 UUID = "fbe27826-d657-4426-b9ab-70f160833a74"
-MAIN_PAGE_URL = "https://inconigto-mode.com/web/index.html"
+MAIN_PAGE_URL = "https://inconigto-mode.com/web"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/FoolVPN-ID/Siren/refs/heads/master/web/sub.html"
