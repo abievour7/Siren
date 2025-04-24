@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -863,11 +864,8 @@ select.form-control {
     const PROXY_CHECK_API_URL = 'https://apicek.t-me-inconigto.workers.dev/proxy';
     const PATH_PREFIX = 'Inconigto-Mode'; // Hardcoded path prefix
     const MainDomains = [
-        'afrcloud.xyz',
-        'afrcloud.site',
-        'afrcloud.web.id',
-        'afrcloud.my.id',
-
+        'jb.serveraby.web.id',
+        'jk.serveraby.web.id',
     ];
 
     const CustomBugs = [];
@@ -895,27 +893,21 @@ select.form-control {
     
     // Check if proxy is valid via API
     async function checkProxyValidity(ip, port) {
-    try {
-        const response = await fetch(`${PROXY_CHECK_API_URL}?ip=${ip}&port=${port}`);
-        
-        if (!response.ok) {
-            console.error(`API error: ${response.status}`);
-            return false;
-        }
-        
-        const data = await response.json();
-        // More robust checking of the response
-        if (data && typeof data.proxyip !== 'undefined') {
+        try {
+            const response = await fetch(`${PROXY_CHECK_API_URL}?ip=${ip}&port=${port}`);
+            
+            if (!response.ok) {
+                console.error(`API error: ${response.status}`);
+                return false;
+            }
+            
+            const data = await response.json();
             return data.proxyip === true;
-        } else {
-            console.warn("Invalid API response format:", data);
+        } catch (error) {
+            console.error("Error checking proxy:", error);
             return false;
         }
-    } catch (error) {
-        console.error("Error checking proxy:", error);
-        return false;
     }
-}
     
     // Create VMess config object
     function createVMessConfig(uuid, domain, host, sni, proxyHost, proxyPort, countryCode, isp, tls) {
@@ -1251,39 +1243,22 @@ async function generateV2raySub(type, uuid, bugType, mainDomain, customBugs, tls
             let invalidCount = 0;
             let processedCount = 0;
             
-// Process proxies in batches
-for (let i = 0; i < limitedProxies.length; i += BATCH_SIZE) {
-    const batch = limitedProxies.slice(i, i + BATCH_SIZE);
-    const batchPromises = batch.map(async (line) => {
-        try {
-            const parts = line.split(',');
-            if (parts.length < 3) {
-                console.warn("Invalid proxy format:", line);
-                return { line, isValid: false };
-            }
-            
-            const [proxyHost, proxyPort] = parts;
-            if (!proxyHost || !proxyPort) {
-                console.warn("Missing host or port:", line);
-                return { line, isValid: false };
-            }
-            
-            const isValid = await checkProxyValidity(proxyHost, proxyPort);
-            return { line, isValid };
-        } catch (err) {
-            console.error("Error processing proxy:", line, err);
-            return { line, isValid: false };
-        }
-    });
-    
-    // Process batch in parallel with error handling
-    let batchResults;
-    try {
-        batchResults = await Promise.all(batchPromises);
-    } catch (error) {
-        console.error("Batch processing error:", error);
-        batchResults = batch.map(line => ({ line, isValid: false }));
-    }
+            // Process proxies in batches
+            for (let i = 0; i < limitedProxies.length; i += BATCH_SIZE) {
+                const batch = limitedProxies.slice(i, i + BATCH_SIZE);
+                const batchPromises = batch.map(async (line) => {
+                    const parts = line.split(',');
+                    if (parts.length < 3) {
+                        return { line, isValid: false };
+                    }
+                    
+                    const [proxyHost, proxyPort] = parts;
+                    const isValid = await checkProxyValidity(proxyHost, proxyPort);
+                    return { line, isValid };
+                });
+                
+                // Process batch in parallel
+                const batchResults = await Promise.all(batchPromises);
                 
                 // Update counts and UI
                 for (const result of batchResults) {
@@ -1309,12 +1284,6 @@ for (let i = 0; i < limitedProxies.length; i += BATCH_SIZE) {
                 }
             }
             
-// If validation completely failed but we need to return something
-if (validProxies.length === 0 && validateProxies) {
-    console.warn("Validation process failed completely. Using unvalidated proxies as fallback.");
-    // Take a sample of proxies without validation as a fallback
-    validProxies = limitedProxies.slice(0, Math.min(parseInt(limit), 5));
-}
             // Use valid proxies for configuration generation
             if (validProxies.length === 0) {
                 // If no valid proxies found but we're only asking for a small number,
