@@ -1,4 +1,4 @@
-name = "serveraby"
+name = "siren"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
@@ -6,37 +6,21 @@ workers_dev = true
 
 routes = [
 
-  { pattern = "vpn.serveraby.web.id", custom_domain = true },
-  { pattern = "ava.game.naver.com.vpn.serveraby.web.id", custom_domain = true },
-  { pattern = "quiz.int.vidio.com.vpn.serveraby.web.id", custom_domain = true },
-  { pattern = "graph.instagram.com.vpn.serveraby.web.id", custom_domain = true },
-  { pattern = "zaintest.vuclip.com.vpn.serveraby.web.id", custom_domain = true },
-  { pattern = "support.zoom.us.vpn.serveraby.web.id", custom_domain = true },
-  { pattern = "cache.netflix.com.vpn.serveraby.web.id", custom_domain = true },
+  { pattern = "jb.serveraby.web.id", custom_domain = true },
+  { pattern = "ava.game.naver.com.jb.serveraby.web.id", custom_domain = true },
+  { pattern = "quiz.int.vidio.com.jb.serveraby.web.id", custom_domain = true },
+  { pattern = "graph.instagram.com.jb.serveraby.web.id", custom_domain = true },
+  { pattern = "zaintest.vuclip.com.jb.serveraby.web.id", custom_domain = true },
+  { pattern = "support.zoom.us.jb.serveraby.web.id", custom_domain = true },
+  { pattern = "cache.netflix.com.jb.serveraby.web.id", custom_domain = true },
 
-  { pattern = "afrcloud.site", custom_domain = true },
-  { pattern = "ava.game.naver.com.afrcloud.site", custom_domain = true },
-  { pattern = "quiz.int.vidio.com.afrcloud.site", custom_domain = true },
-  { pattern = "graph.instagram.com.afrcloud.site", custom_domain = true },
-  { pattern = "zaintest.vuclip.com.afrcloud.site", custom_domain = true },
-  { pattern = "support.zoom.us.afrcloud.site", custom_domain = true },
-  { pattern = "cache.netflix.com.afrcloud.site", custom_domain = true },
-
-  { pattern = "afrcloud.xyz", custom_domain = true },
-  { pattern = "ava.game.naver.com.afrcloud.xyz", custom_domain = true },
-  { pattern = "quiz.int.vidio.com.afrcloud.xyz", custom_domain = true },
-  { pattern = "graph.instagram.com.afrcloud.xyz", custom_domain = true },
-  { pattern = "zaintest.vuclip.com.afrcloud.xyz", custom_domain = true },
-  { pattern = "support.zoom.us.afrcloud.xyz", custom_domain = true },
-  { pattern = "cache.netflix.com.afrcloud.xyz", custom_domain = true },
-
-  { pattern = "cloud.serveraby.web.id", custom_domain = true },
-  { pattern = "ava.game.naver.com.cloud.serveraby.web.id", custom_domain = true },
-  { pattern = "quiz.int.vidio.com.cloud.serveraby.web.id", custom_domain = true },
-  { pattern = "graph.instagram.com.cloud.serveraby.web.id", custom_domain = true },
-  { pattern = "zaintest.vuclip.com.cloud.serveraby.web.id", custom_domain = true },
-  { pattern = "support.zoom.us.cloud.serveraby.web.id", custom_domain = true },
-  { pattern = "cache.netflix.com.cloud.serveraby.web.id", custom_domain = true },
+  { pattern = "jk.serveraby.web.id", custom_domain = true },
+  { pattern = "ava.game.naver.com.jk.serveraby.web.id", custom_domain = true },
+  { pattern = "quiz.int.vidio.com.jk.serveraby.web.id", custom_domain = true },
+  { pattern = "graph.instagram.com.jk.serveraby.web.id", custom_domain = true },
+  { pattern = "zaintest.vuclip.com.jk.serveraby.web.id", custom_domain = true },
+  { pattern = "support.zoom.us.jk.serveraby.web.id", custom_domain = true },
+  { pattern = "cache.netflix.com.jk.serveraby.web.id", custom_domain = true },
 ]
 
 [[kv_namespaces]]
@@ -53,4 +37,3 @@ UUID = "fbe27826-d657-4426-b9ab-70f160833a74"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/InconigtoMode/HTML/refs/heads/main/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/InconigtoMode/HTML/refs/heads/main/sub.html"
 LINK_PAGE_URL = "https://raw.githubusercontent.com/InconigtoMode/HTML/refs/heads/main/link.html"
-CONVERTER_PAGE_URL = "https://raw.githubusercontent.com/InconigtoMode/HTML/refs/heads/main/converter.html"
